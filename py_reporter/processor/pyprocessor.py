@@ -81,8 +81,8 @@ class PyCrashProcessor(RequiredConfig):
         processed_crash.startedDateTime = started_datetime
         processor_notes = ['pyprocessor 2013']
         try:
-            raw_dump = json.loads(raw_crash.raw_dump)
-            environment = json.loads(raw_crash.environment)
+            raw_dump = DotDict(json.loads(raw_crash.raw_dump))
+            environment = DotDict(json.loads(raw_crash.environment))
             processed_crash.signature = \
                 ' | '.join(self.method_parts(raw_dump['stack']))
 
