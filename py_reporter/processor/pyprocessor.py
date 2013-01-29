@@ -82,9 +82,21 @@ class PyCrashProcessor(RequiredConfig):
         processor_notes = ['pyprocessor 2013']
         try:
             raw_dump = json.loads(raw_crash.raw_dump)
+            environment = json.loads(raw_crash.environment)
             processed_crash.signature = \
                 ' | '.join(self.method_parts(raw_dump['stack']))
+
             processed_crash.date_processed = raw_crash.submitted_timestamp
+            processed_crash.client_crash_date = raw_crash.client_crash_date
+            processed_crash.cpu_info = environment.machine
+            processed_crash.cpu_name = environment.processor
+            processed_crash.crashedThread = raw_dump.crashedThread
+            processed_crash.os_name = environment.system
+            processed_crash.os_version = environment.release
+            processed_crash.product = raw_crash.ProductName
+            processed_crash.reason = raw_dump.exception_str
+            processed_crash.version = raw_crash.Version
+
             processed_crash.success = True
         except Exception, x:
             processor_notes.append(str(x))

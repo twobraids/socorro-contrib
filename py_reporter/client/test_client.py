@@ -43,10 +43,5 @@ def gamma(x=-1):
         beta(x - 1)
 
 
-alpha(4)
-gamma(2)
-beta(2)
-gamma(3)
-beta(0)
-beta(5)
+beta(10)
 
