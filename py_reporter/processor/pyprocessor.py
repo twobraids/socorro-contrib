@@ -84,8 +84,9 @@ class PyCrashProcessor(RequiredConfig):
             raw_dump = DotDict(json.loads(raw_crash.raw_dump))
             environment = DotDict(json.loads(raw_crash.environment))
             processed_crash.signature = \
-                ' | '.join(self.method_parts(raw_dump['stack']))
+                ' | '.join(self.method_parts(raw_dump.stack))
 
+            processed_crash.dump = raw_dump.stack
             processed_crash.date_processed = raw_crash.submitted_timestamp
             processed_crash.client_crash_date = raw_crash.client_crash_date
             processed_crash.cpu_info = environment.machine
