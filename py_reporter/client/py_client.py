@@ -75,6 +75,7 @@ class CrashSubmitter(RequiredConfig):
         environment.python_version = platform.python_version()
         environment.python_version_tuple = platform.python_version_tuple()
         environment.release = platform.release()
+        environment.system = platform.system()
         environment.version = platform.version()
         environment.uname = platform.uname()
 
